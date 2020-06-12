@@ -19,32 +19,31 @@ class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
-    // /**
-    //  * @return Client[] Returns an array of Client objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Client
+    /**
+     * Chercher la liste des client
+     */
+    public function getAll()
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $entityManager = $this->getEntityManager(); 
+        $querry = $entityManager->createQuery(
+                'SELECT c
+                    FROM app\Entity\Client c
+                    ORDER BY c.date_creation DESC'
+                );
+        return $querry->execute();
     }
-    */
+
+     /**
+     * supprimer une client
+     */
+    public function deleteOneById($id){
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            "DELETE 
+                FROM app\Entity\Client c
+                WHERE c.id = $id"
+        );
+        return $query->execute();
+    }
 }

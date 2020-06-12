@@ -49,6 +49,11 @@ class Client
      */
     private $commandes;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateCreation;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -146,6 +151,18 @@ class Client
                 $commande->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->dateCreation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $dateCreation): self
+    {
+        $this->dateCreation = $dateCreation;
 
         return $this;
     }

@@ -20,31 +20,16 @@ class DetailCommandeRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return DetailCommande[] Returns an array of DetailCommande objects
+    //  * Chercher la liste des 
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?DetailCommande
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    // public function getAll()
+    // {
+    //     $entityManager = $this->getEntityManager(); 
+    //     $querry = $entityManager->createQuery(
+    //             'SELECT dc
+    //                 FROM app\Entity\DetailCommande dc
+    //                 ORDER BY dc.id DESC'
+    //             );
+    //     return $querry->execute();
+    // }
 }

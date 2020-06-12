@@ -2,18 +2,47 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Client;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+* @Route("/client")
+*/
 class ClientController extends AbstractController
 {
     /**
-     * @Route("/client", name="client")
+     * @Route("/", name="client")
      */
     public function index()
     {
-        return $this->render('client/index.html.twig', [
-            'controller_name' => 'ClientController',
-        ]);
+        $client=$this->getDoctrine()
+        ->getRepository(Client::class)
+        ->getAll();
+    return $this->render('client/index.html.twig', [
+        'clients' => $client,
+    ]);
+    }
+
+    /**
+    * @Route("/{id}/remove", name="client_remove", methods="GET")
+    */
+    public function remove(Client $client){
+        $id = $client->getId();
+        $client = $this->getDoctrine()
+                ->getRepository(Film::class)
+                ->deleteOneById($id);
+        return $this->redirectToRoute('client_index');
+    }   
+
+
+     /**
+     * @Route("/{id}", name="client_show", methods="GET")
+     */
+    public function schow(Client $client): Response {
+        return $this->render('film/show.html.twig',[
+            'client'=>$client
+            ]);
     }
 }

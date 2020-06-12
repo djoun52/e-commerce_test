@@ -5,10 +5,13 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+* @Route("/commande")
+*/
 class CommandeController extends AbstractController
 {
     /**
-     * @Route("/commande", name="commande")
+     * @Route("/", name="commande")
      */
     public function index()
     {
