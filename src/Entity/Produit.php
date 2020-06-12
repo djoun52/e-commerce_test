@@ -43,6 +43,11 @@ class Produit
      */
     private $detailCommandes;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateAjout;
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();
@@ -130,6 +135,18 @@ class Produit
                 $detailCommande->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateAjout(): ?\DateTimeInterface
+    {
+        return $this->dateAjout;
+    }
+
+    public function setDateAjout(\DateTimeInterface $dateAjout): self
+    {
+        $this->dateAjout = $dateAjout;
 
         return $this;
     }

@@ -19,6 +19,19 @@ class ProduitRepository extends ServiceEntityRepository
         parent::__construct($registry, Produit::class);
     }
 
+         /**
+     * Afficher la liste des entreprises
+     */
+    public function getAll()
+    {
+        $entityManager = $this->getEntityManager(); 
+        $querry = $entityManager->createQuery(
+                'SELECT p
+                    FROM app\Entity\Produit p
+                    ORDER BY p.designation DESC'
+                );
+        return $querry->execute();
+    }
     // /**
     //  * @return Produit[] Returns an array of Produit objects
     //  */
