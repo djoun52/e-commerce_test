@@ -31,7 +31,7 @@ class ClientController extends AbstractController
     public function remove(Client $client){
         $id = $client->getId();
         $client = $this->getDoctrine()
-                ->getRepository(Film::class)
+                ->getRepository(Client::class)
                 ->deleteOneById($id);
         return $this->redirectToRoute('client_index');
     }   
@@ -41,7 +41,7 @@ class ClientController extends AbstractController
      * @Route("/{id}", name="client_show", methods="GET")
      */
     public function schow(Client $client): Response {
-        return $this->render('film/show.html.twig',[
+        return $this->render('client/show.html.twig',[
             'client'=>$client
             ]);
     }
